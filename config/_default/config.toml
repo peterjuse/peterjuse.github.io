@@ -47,7 +47,7 @@ pluralizelisttitles = false   # removes the automatically appended "s" on sideba
     #xmpp_url = "https://xmpp.org"
     youtube_url = "https://youtube.com/peterjuse22"
     #signal_url = "https://signal.org"
-    bluesky_url = "https://bsky.app/pedro-luis22.bsky.social"
+    #bluesky_url = "https://bsky.app/pedro-luis22.bsky.social"
 
     # NOTE: If you don't want to use RSS, comment or delete the following lines
     # Adds an RSS icon to the end of the socials which links to {{ .Site.BaseURL }}/index.xml
