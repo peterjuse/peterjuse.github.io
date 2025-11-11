@@ -71,6 +71,7 @@ jobs:
           hugo \
             --gc \
             --minify \
+            --verbose \
             --baseURL "${{ steps.pages.outputs.base_url }}/"
       - name: Subiendo artifact
         uses: actions/upload-pages-artifact@v3
