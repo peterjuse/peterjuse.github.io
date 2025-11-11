@@ -57,6 +57,11 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
+      - name: Force SSH and Debug Git Config
+        run: |
+          git config --global url."git@github.com:".insteadOf "https://github.com/"
+          echo "--- Global Git Config ---"
+          git config --list --global
       - name: Checkout Submodules
         run: git submodule update --init --recursive
       - name: Configurando Github Pages
