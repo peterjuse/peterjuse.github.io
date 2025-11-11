@@ -67,7 +67,7 @@ jobs:
           HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
           HUGO_ENVIRONMENT: production
           TZ: America/Caracas
-        run: hugo --gc --minify --verbose --baseURL "${{ steps.pages.outputs.base_url }}/"
+        run: hugo build --gc --minify --verbose --baseURL "${{ steps.pages.outputs.base_url }}"
       - name: Subiendo artifact
         uses: actions/upload-pages-artifact@v3
         with:
