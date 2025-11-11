@@ -53,8 +53,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          submodules: recursive
           fetch-depth: 0
+      - name: Checkout Submodules
+        run: git submodule update --init --recursive
       - name: Configurando Github Pages
         id: pages
         uses: actions/configure-pages@v5
