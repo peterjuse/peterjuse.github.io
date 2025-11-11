@@ -40,14 +40,19 @@ jobs:
           && sudo dpkg -i ${{ runner.temp }}/hugo.deb
       - name: Instalacion de Dart Sass
         run: sudo snap install dart-sass
-      - name: Force SSH for submodules
-        run: git config --global url."git@github.com:".insteadOf "https://github.com/"
+      - name: Setup SSH Key
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
       - name: Checkout
         uses: actions/checkout@v4
         with:
           submodules: recursive
           fetch-depth: 0
-          ssh-key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
       - name: Configurando Github Pages
         id: pages
         uses: actions/configure-pages@v5
