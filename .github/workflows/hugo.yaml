@@ -40,8 +40,6 @@ jobs:
           && sudo dpkg -i ${{ runner.temp }}/hugo.deb
       - name: Instalacion de Dart Sass
         run: sudo snap install dart-sass
-      - name: Debug SSH Key
-        run: echo "Secret is ${{ secrets.ACTIONS_DEPLOY_KEY && 'Set' || 'Not Set' }}"
       - name: Setup SSH Key
         env:
           SSH_PRIVATE_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
@@ -50,19 +48,14 @@ jobs:
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan github.com >> ~/.ssh/known_hosts
-      - name: Test SSH Connection
-        run: ssh -T git@github.com
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
           persist-credentials: false
-      - name: Force SSH and Debug Git Config
-        run: |
-          git config --global url."git@github.com:".insteadOf "https://github.com/"
-          echo "--- Global Git Config ---"
-          git config --list --global
       - name: Checkout Submodules
+        env:
+          GIT_SSH_COMMAND: "ssh -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes"
         run: git submodule update --init --recursive
       - name: Configurando Github Pages
         id: pages
