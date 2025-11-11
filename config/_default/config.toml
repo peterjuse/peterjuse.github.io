@@ -1,9 +1,16 @@
 baseURL = "https://peterjuse.github.io"
 relativeURLs = false
-languageCode = "es-ve"
+defaultContentLanguage = "es"
 theme = "poison"
 pagination.pagerSize = 5
 pluralizelisttitles = false   # removes the automatically appended "s" on sidebar entries
+
+[languages]
+  [languages.es]
+    languageName = "Español"
+    languageCode = "es-ve"
+    contentDir = "content"
+    weight = 1
 
 # NOTE: If using Disqus as commenting engine, uncomment and configure this line
 # disqusShortname = "yourDisqusShortname"
