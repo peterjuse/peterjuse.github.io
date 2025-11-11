@@ -45,6 +45,7 @@ jobs:
         with:
           submodules: recursive
           fetch-depth: 0
+          ssh-key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
       - name: Configurando Github Pages
         id: pages
         uses: actions/configure-pages@v5
