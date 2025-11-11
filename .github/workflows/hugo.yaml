@@ -40,6 +40,8 @@ jobs:
           && sudo dpkg -i ${{ runner.temp }}/hugo.deb
       - name: Instalacion de Dart Sass
         run: sudo snap install dart-sass
+      - name: Force SSH for submodules
+        run: git config --global url."git@github.com:".insteadOf "https://github.com/"
       - name: Checkout
         uses: actions/checkout@v4
         with:
