@@ -1,25 +1,4 @@
-<!-- DEBUG: THIS IS LAYOUTS/INDEX.HTML -->
-{{ define "main" -}}
-<div class="posts">
-    {{ $frontPageTypes := default (slice "posts") .Site.Params.front_page_content }}
-    <!-- DEBUG: frontPageTypes = {{ $frontPageTypes }} -->
-    {{ $pages := (where .Site.RegularPages "Type" "in" $frontPageTypes) }}
-    <!-- DEBUG: Found {{ len $pages }} pages of type {{ $frontPageTypes }} -->
-    {{ range (.Paginate $pages).Pages }}
-    <article class="post">
-        {{ partial "post/info.html" . }}
-        {{ if or (.Site.Params.noSummary) (.Params.noSummary) }}
-        {{ .Content }}
-        {{ else }}
-        {{ .Summary }}
-        {{ if .Truncated }}
-        <div class="read-more-link">
-            <a href="{{ .RelPermalink }}">Read More…</a>
-        </div>
-        {{ end }}
-        {{ end }}
-    </article>
-    {{- end }}
-</div>
-{{ partial "pagination.html" . }}
-{{- end }}
+<!-- DEBUG: THIS IS A TEST HOMEPAGE -->
+{{ define "main" }}
+<h1>Hello from the homepage!</h1>
+{{ end }}
