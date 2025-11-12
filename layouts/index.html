@@ -1,7 +1,10 @@
 {{ define "main" -}}
 <div class="posts">
     {{ $frontPageTypes := default (slice "posts") .Site.Params.front_page_content }}
-    {{ range (.Paginate (where .Site.RegularPages "Type" "in" $frontPageTypes)).Pages }}
+    <!-- DEBUG: frontPageTypes = {{ $frontPageTypes }} -->
+    {{ $pages := (where .Site.RegularPages "Type" "in" $frontPageTypes) }}
+    <!-- DEBUG: Found {{ len $pages }} pages of type {{ $frontPageTypes }} -->
+    {{ range (.Paginate $pages).Pages }}
     <article class="post">
         {{ partial "post/info.html" . }}
         {{ if or (.Site.Params.noSummary) (.Params.noSummary) }}
