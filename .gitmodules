@@ -4,3 +4,4 @@
 [submodule "content"]
 	path = content
 	url = git@github.com:peterjuse/blog-posts.git
+	branch = main

@@ -6,6 +6,10 @@ on:
   push:
     branches:
       - main
+  
+  # Trigger from other repositories
+  repository_dispatch:
+    types: [update-posts]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -51,12 +55,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
+          submodules: 'recursive'
           fetch-depth: 0
-          persist-credentials: false
-      - name: Checkout Submodules
+      - name: Update Submodule to Latest
         env:
           GIT_SSH_COMMAND: "ssh -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes"
-        run: git submodule update --init --recursive
+        run: |
+          git submodule update --init --recursive --remote --merge
       - name: Configurando Github Pages
         id: pages
         uses: actions/configure-pages@v5
